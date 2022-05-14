@@ -6,11 +6,11 @@ const userRouter = require('./routes/userRoutes');
 
 const app = express();
 
-//  middlewares
+// app.use is a special function to increase functionality with Express by adding
+// a function to our application ’ s middleware stack
 app.use(morgan('dev'));
 
 app.use(express.json());
-
 // When talking about express.json() and express.urlencoded() think specifically about POST requests
 // (i.e. the .post request object) and PUT Requests (i.e. the .put request object)
 // You DO NOT NEED express.json() and express.urlencoded() for GET Requests or DELETE Requests
@@ -29,21 +29,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// routes handlers
-
-// routes
-// app.get('/api/v1/tours', getAllTours);
-// app.get('/api/v1/tours/:id', getTour);
-// app.post('/api/v1/tours', createTour);
-// app.patch('/api/v1/tours/:id', updateTour);
-// app.delete('/api/v1/tours/:id', deleteTour);
-
-// app.route Returns an instance of a single route, which
-// you can chain http requests
-
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 
 module.exports = app;
-
-// Routing - where we map requests to specific handlers depending on their URL
